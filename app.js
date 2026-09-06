@@ -5327,3 +5327,517 @@ function goBack() {
     }
 
 })();
+/* ============================================================
+   CO-OP SEVA - ADD MALAYALAM + TELUGU
+   ============================================================ */
+
+(function () {
+
+    "use strict";
+
+
+    /* =========================================================
+       ADD MALAYALAM + TELUGU TO EVERY LANGUAGE DROPDOWN
+       ========================================================= */
+
+    function addNewLanguages() {
+
+        const selectors = [
+
+            document.getElementById("coOpLanguage"),
+
+            document.getElementById("languageSelector"),
+
+            document.getElementById("coOpPopupLanguage")
+
+        ];
+
+
+        selectors.forEach(function (selector) {
+
+            if (!selector) {
+                return;
+            }
+
+
+            /* Malayalam */
+
+            if (
+                !selector.querySelector(
+                    'option[value="ml"]'
+                )
+            ) {
+
+                const malayalam =
+                    document.createElement("option");
+
+                malayalam.value = "ml";
+
+                malayalam.textContent =
+                    "🇮🇳 മലയാളം";
+
+                selector.appendChild(
+                    malayalam
+                );
+
+            }
+
+
+            /* Telugu */
+
+            if (
+                !selector.querySelector(
+                    'option[value="te"]'
+                )
+            ) {
+
+                const telugu =
+                    document.createElement("option");
+
+                telugu.value = "te";
+
+                telugu.textContent =
+                    "🇮🇳 తెలుగు";
+
+                selector.appendChild(
+                    telugu
+                );
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================================
+       MALAYALAM + TELUGU TRANSLATIONS
+       ========================================================= */
+
+    const newTranslations = {
+
+        ml: {
+
+            welcome:
+                "സ്വാഗതം!",
+
+            select:
+                "തുടരാൻ നിങ്ങൾക്ക് എങ്ങനെ വേണമെന്ന് തിരഞ്ഞെടുക്കുക",
+
+            customer:
+                "ഞാൻ ഒരു ഉപഭോക്താവാണ്",
+
+            worker:
+                "ഞാൻ ഒരു തൊഴിലാളിയാണ്",
+
+            admin:
+                "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ",
+
+            tagline:
+                "വിശ്വസനീയ തൊഴിലാളികൾ • ന്യായമായ ബുക്കിംഗുകൾ • ശക്തമായ സഹകരണ സംഘങ്ങൾ"
+
+        },
+
+
+        te: {
+
+            welcome:
+                "స్వాగతం!",
+
+            select:
+                "కొనసాగించడానికి మీరు ఎలా కొనసాగాలనుకుంటున్నారో ఎంచుకోండి",
+
+            customer:
+                "నేను కస్టమర్‌ను",
+
+            worker:
+                "నేను కార్మికుడిని",
+
+            admin:
+                "సహకార నిర్వాహకుడు",
+
+            tagline:
+                "విశ్వసనీయ కార్మికులు • న్యాయమైన బుకింగ్‌లు • బలమైన సహకార సంఘాలు"
+
+        }
+
+    };
+
+
+    /* =========================================================
+       LANDING PAGE TRANSLATION
+       ========================================================= */
+
+    function translateNewLanguages() {
+
+        const language =
+            localStorage.getItem(
+                "coOpLanguage"
+            );
+
+
+        if (
+            language !== "ml" &&
+            language !== "te"
+        ) {
+
+            return;
+
+        }
+
+
+        const lang =
+            newTranslations[
+                language
+            ];
+
+
+        const container =
+            document.querySelector(
+                ".welcome-container"
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        /* -----------------------------------------------------
+           WELCOME
+           ----------------------------------------------------- */
+
+        container
+            .querySelectorAll(
+                "h1, h2, h3"
+            )
+            .forEach(function (element) {
+
+                const text =
+                    element.textContent
+                        .trim();
+
+
+                if (
+                    text === "Welcome!" ||
+                    text === "സ്വാഗതം!" ||
+                    text === "స్వాగతం!"
+                ) {
+
+                    element.textContent =
+                        lang.welcome;
+
+                }
+
+            });
+
+
+        /* -----------------------------------------------------
+           SELECT TEXT
+           ----------------------------------------------------- */
+
+        container
+            .querySelectorAll(
+                "p, div, span"
+            )
+            .forEach(function (element) {
+
+                const text =
+                    element.textContent
+                        .replace(
+                            /\s+/g,
+                            " "
+                        )
+                        .trim();
+
+
+                if (
+                    text ===
+                        "Select how you want to continue" ||
+
+                    text ===
+                        "തുടരാൻ നിങ്ങൾക്ക് എങ്ങനെ വേണമെന്ന് തിരഞ്ഞെടുക്കുക" ||
+
+                    text ===
+                        "కొనసాగించడానికి మీరు ఎలా కొనసాగాలనుకుంటున్నారో ఎంచుకోండి"
+                ) {
+
+                    element.textContent =
+                        lang.select;
+
+                }
+
+            });
+
+
+        /* -----------------------------------------------------
+           TAGLINE
+           ----------------------------------------------------- */
+
+        container
+            .querySelectorAll("p")
+            .forEach(function (element) {
+
+                const text =
+                    element.textContent
+                        .trim();
+
+
+                if (
+                    text.includes(
+                        "Trusted"
+                    ) ||
+                    text.includes(
+                        "വിശ്വസനീയ"
+                    ) ||
+                    text.includes(
+                        "విశ్వసనీయ"
+                    )
+                ) {
+
+                    element.textContent =
+                        lang.tagline;
+
+                }
+
+            });
+
+
+        /* -----------------------------------------------------
+           BUTTONS
+           ----------------------------------------------------- */
+
+        container
+            .querySelectorAll(
+                "button"
+            )
+            .forEach(function (button) {
+
+                const text =
+                    button.textContent
+                        .trim();
+
+
+                /* CUSTOMER */
+
+                if (
+                    text.includes(
+                        "I'm a Customer"
+                    ) ||
+                    text.includes(
+                        "मैं ग्राहक हूँ"
+                    ) ||
+                    text.includes(
+                        "ನಾನು ಗ್ರಾಹಕ"
+                    ) ||
+                    text.includes(
+                        "நான் வாடிக்கையாளர்"
+                    ) ||
+                    text.includes(
+                        "ഞാൻ ഒരു ഉപഭോക്താവാണ്"
+                    ) ||
+                    text.includes(
+                        "నేను కస్టమర్‌ను"
+                    )
+                ) {
+
+                    button.innerHTML =
+                        "👤 " +
+                        lang.customer;
+
+                }
+
+
+                /* WORKER */
+
+                else if (
+                    text.includes(
+                        "I'm a Worker"
+                    ) ||
+                    text.includes(
+                        "मैं एक कर्मचारी हूँ"
+                    ) ||
+                    text.includes(
+                        "ನಾನು ಕೆಲಸಗಾರ"
+                    ) ||
+                    text.includes(
+                        "நான் தொழிலாளர்"
+                    ) ||
+                    text.includes(
+                        "ഞാൻ ഒരു തൊഴിലാളിയാണ്"
+                    ) ||
+                    text.includes(
+                        "నేను కార్మికుడిని"
+                    )
+                ) {
+
+                    button.innerHTML =
+                        "👷 " +
+                        lang.worker;
+
+                }
+
+
+                /* ADMIN */
+
+                else if (
+                    text.includes(
+                        "Cooperative Admin"
+                    ) ||
+                    text.includes(
+                        "सहकारी प्रशासक"
+                    ) ||
+                    text.includes(
+                        "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು"
+                    ) ||
+                    text.includes(
+                        "கூட்டுறவு நிர்வாகி"
+                    ) ||
+                    text.includes(
+                        "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ"
+                    ) ||
+                    text.includes(
+                        "సహకార నిర్వాహకుడు"
+                    )
+                ) {
+
+                    button.innerHTML =
+                        "🏢 " +
+                        lang.admin;
+
+                }
+
+            });
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE CHANGE
+       ========================================================= */
+
+    document.addEventListener(
+        "change",
+        function (event) {
+
+            if (
+                !event.target
+            ) {
+                return;
+            }
+
+
+            const id =
+                event.target.id;
+
+
+            if (
+                id === "coOpLanguage" ||
+                id === "languageSelector" ||
+                id === "coOpPopupLanguage"
+            ) {
+
+                const language =
+                    event.target.value;
+
+
+                if (
+                    language === "ml" ||
+                    language === "te"
+                ) {
+
+                    localStorage.setItem(
+                        "coOpLanguage",
+                        language
+                    );
+
+
+                    setTimeout(
+                        translateNewLanguages,
+                        100
+                    );
+
+
+                    setTimeout(
+                        translateNewLanguages,
+                        400
+                    );
+
+                }
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =========================================================
+       KEEP NEW LANGUAGES AVAILABLE
+       ========================================================= */
+
+    function initializeNewLanguages() {
+
+        addNewLanguages();
+
+        translateNewLanguages();
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                setTimeout(
+                    initializeNewLanguages,
+                    300
+                );
+
+            }
+        );
+
+    } else {
+
+        setTimeout(
+            initializeNewLanguages,
+            300
+        );
+
+    }
+
+
+    /* =========================================================
+       WATCH FOR NEW SCREENS / DROPDOWN RECREATION
+       ========================================================= */
+
+    if (document.body) {
+
+        const observer =
+            new MutationObserver(
+                function () {
+
+                    addNewLanguages();
+
+                    translateNewLanguages();
+
+                }
+            );
+
+
+        observer.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
+
+    }
+
+})();
