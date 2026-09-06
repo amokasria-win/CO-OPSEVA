@@ -5328,7 +5328,16 @@ function goBack() {
 
 })();
 /* ============================================================
-   CO-OP SEVA - ADD MALAYALAM + TELUGU
+   CO-OP SEVA - FINAL 6 LANGUAGE FIX
+   ------------------------------------------------------------
+   English
+   Hindi
+   Kannada
+   Tamil
+   Malayalam
+   Telugu
+
+   This fixes the LANDING PAGE completely.
    ============================================================ */
 
 (function () {
@@ -5337,165 +5346,292 @@ function goBack() {
 
 
     /* =========================================================
-       ADD MALAYALAM + TELUGU TO EVERY LANGUAGE DROPDOWN
+       LANGUAGE TRANSLATIONS
        ========================================================= */
 
-    function addNewLanguages() {
+    const COOP_SEVA_LANGUAGES = {
 
-        const selectors = [
-
-            document.getElementById("coOpLanguage"),
-
-            document.getElementById("languageSelector"),
-
-            document.getElementById("coOpPopupLanguage")
-
-        ];
-
-
-        selectors.forEach(function (selector) {
-
-            if (!selector) {
-                return;
-            }
-
-
-            /* Malayalam */
-
-            if (
-                !selector.querySelector(
-                    'option[value="ml"]'
-                )
-            ) {
-
-                const malayalam =
-                    document.createElement("option");
-
-                malayalam.value = "ml";
-
-                malayalam.textContent =
-                    "🇮🇳 മലയാളം";
-
-                selector.appendChild(
-                    malayalam
-                );
-
-            }
+        en: {
+            title: "CO-OP SEVA",
+            tagline:
+                "Trusted Workers • Fair Bookings • Stronger Cooperatives",
+            welcome:
+                "Welcome!",
+            select:
+                "Select how you want to continue",
+            customer:
+                "I'm a Customer",
+            worker:
+                "I'm a Worker",
+            admin:
+                "Cooperative Admin"
+        },
 
 
-            /* Telugu */
-
-            if (
-                !selector.querySelector(
-                    'option[value="te"]'
-                )
-            ) {
-
-                const telugu =
-                    document.createElement("option");
-
-                telugu.value = "te";
-
-                telugu.textContent =
-                    "🇮🇳 తెలుగు";
-
-                selector.appendChild(
-                    telugu
-                );
-
-            }
-
-        });
-
-    }
+        hi: {
+            title: "को-ऑप सेवा",
+            tagline:
+                "विश्वसनीय कर्मचारी • निष्पक्ष बुकिंग • मजबूत सहकारी समितियाँ",
+            welcome:
+                "स्वागत है!",
+            select:
+                "जारी रखने के लिए चुनें",
+            customer:
+                "मैं ग्राहक हूँ",
+            worker:
+                "मैं एक कर्मचारी हूँ",
+            admin:
+                "सहकारी प्रशासक"
+        },
 
 
-    /* =========================================================
-       MALAYALAM + TELUGU TRANSLATIONS
-       ========================================================= */
+        kn: {
+            title: "ಕೋ-ಆಪ್ ಸೇವಾ",
+            tagline:
+                "ವಿಶ್ವಾಸಾರ್ಹ ಕೆಲಸಗಾರರು • ನ್ಯಾಯಯುತ ಬುಕ್ಕಿಂಗ್‌ಗಳು • ಬಲವಾದ ಸಹಕಾರ ಸಂಘಗಳು",
+            welcome:
+                "ಸ್ವಾಗತ!",
+            select:
+                "ಮುಂದುವರಿಯಲು ನೀವು ಹೇಗೆ ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+            customer:
+                "ನಾನು ಗ್ರಾಹಕ",
+            worker:
+                "ನಾನು ಕೆಲಸಗಾರ",
+            admin:
+                "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು"
+        },
 
-    const newTranslations = {
+
+        ta: {
+            title: "கோ-ஆப் சேவா",
+            tagline:
+                "நம்பகமான தொழிலாளர்கள் • நியாயமான முன்பதிவுகள் • வலுவான கூட்டுறவுகள்",
+            welcome:
+                "வரவேற்கிறோம்!",
+            select:
+                "தொடர விரும்பும் முறையைத் தேர்ந்தெடுக்கவும்",
+            customer:
+                "நான் வாடிக்கையாளர்",
+            worker:
+                "நான் தொழிலாளர்",
+            admin:
+                "கூட்டுறவு நிர்வாகி"
+        },
+
 
         ml: {
-
+            title: "കോ-ഓപ്പ് സേവ",
+            tagline:
+                "വിശ്വസനീയ തൊഴിലാളികൾ • ന്യായമായ ബുക്കിംഗുകൾ • ശക്തമായ സഹകരണ സംഘങ്ങൾ",
             welcome:
                 "സ്വാഗതം!",
-
             select:
                 "തുടരാൻ നിങ്ങൾക്ക് എങ്ങനെ വേണമെന്ന് തിരഞ്ഞെടുക്കുക",
-
             customer:
                 "ഞാൻ ഒരു ഉപഭോക്താവാണ്",
-
             worker:
                 "ഞാൻ ഒരു തൊഴിലാളിയാണ്",
-
             admin:
-                "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ",
-
-            tagline:
-                "വിശ്വസനീയ തൊഴിലാളികൾ • ന്യായമായ ബുക്കിംഗുകൾ • ശക്തമായ സഹകരണ സംഘങ്ങൾ"
-
+                "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ"
         },
 
 
         te: {
-
+            title: "కో-ఆప్ సేవా",
+            tagline:
+                "విశ్వసనీయ కార్మికులు • న్యాయమైన బుకింగ్‌లు • బలమైన సహకార సంఘాలు",
             welcome:
                 "స్వాగతం!",
-
             select:
                 "కొనసాగించడానికి మీరు ఎలా కొనసాగాలనుకుంటున్నారో ఎంచుకోండి",
-
             customer:
                 "నేను కస్టమర్‌ను",
-
             worker:
                 "నేను కార్మికుడిని",
-
             admin:
-                "సహకార నిర్వాహకుడు",
-
-            tagline:
-                "విశ్వసనీయ కార్మికులు • న్యాయమైన బుకింగ్‌లు • బలమైన సహకార సంఘాలు"
-
+                "సహకార నిర్వాహకుడు"
         }
 
     };
 
 
     /* =========================================================
-       LANDING PAGE TRANSLATION
+       ADD MALAYALAM + TELUGU TO ALL DROPDOWNS
        ========================================================= */
 
-    function translateNewLanguages() {
+    function addLanguageOptions() {
 
-        const language =
+        const selectors = [
+
+            document.getElementById(
+                "coOpLanguage"
+            ),
+
+            document.getElementById(
+                "languageSelector"
+            ),
+
+            document.getElementById(
+                "coOpPopupLanguage"
+            )
+
+        ];
+
+
+        selectors.forEach(
+            function (selector) {
+
+                if (!selector) {
+                    return;
+                }
+
+
+                /* Malayalam */
+
+                if (
+                    !selector.querySelector(
+                        'option[value="ml"]'
+                    )
+                ) {
+
+                    const optionML =
+                        document.createElement(
+                            "option"
+                        );
+
+                    optionML.value =
+                        "ml";
+
+                    optionML.textContent =
+                        "🇮🇳 മലയാളം";
+
+                    selector.appendChild(
+                        optionML
+                    );
+
+                }
+
+
+                /* Telugu */
+
+                if (
+                    !selector.querySelector(
+                        'option[value="te"]'
+                    )
+                ) {
+
+                    const optionTE =
+                        document.createElement(
+                            "option"
+                        );
+
+                    optionTE.value =
+                        "te";
+
+                    optionTE.textContent =
+                        "🇮🇳 తెలుగు";
+
+                    selector.appendChild(
+                        optionTE
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       GET CURRENT LANGUAGE
+       ========================================================= */
+
+    function getLanguage() {
+
+        const saved =
             localStorage.getItem(
                 "coOpLanguage"
             );
 
 
         if (
-            language !== "ml" &&
-            language !== "te"
+            COOP_SEVA_LANGUAGES[saved]
         ) {
 
-            return;
+            return saved;
 
         }
 
 
-        const lang =
-            newTranslations[
-                language
-            ];
+        return "en";
 
+    }
+
+
+    /* =========================================================
+       FIND LANDING PAGE
+       ========================================================= */
+
+    function getLandingPage() {
+
+        /*
+         * Your actual landing page has these
+         * three login buttons.
+         */
+
+        const customer =
+            document.querySelector(
+                'button[onclick="customerLogin()"]'
+            );
+
+
+        const worker =
+            document.querySelector(
+                'button[onclick="workerLogin()"]'
+            );
+
+
+        const admin =
+            document.querySelector(
+                'button[onclick="adminLogin()"]'
+            );
+
+
+        if (
+            customer ||
+            worker ||
+            admin
+        ) {
+
+            return (
+                customer?.closest(
+                    ".welcome-container"
+                ) ||
+                worker?.closest(
+                    ".welcome-container"
+                ) ||
+                admin?.closest(
+                    ".welcome-container"
+                )
+            );
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =========================================================
+       APPLY LANDING PAGE LANGUAGE
+       ========================================================= */
+
+    function translateLandingPage() {
 
         const container =
-            document.querySelector(
-                ".welcome-container"
-            );
+            getLandingPage();
 
 
         if (!container) {
@@ -5503,33 +5639,91 @@ function goBack() {
         }
 
 
+        const language =
+            getLanguage();
+
+
+        const lang =
+            COOP_SEVA_LANGUAGES[
+                language
+            ];
+
+
+        if (!lang) {
+            return;
+        }
+
+
+        /* -----------------------------------------------------
+           TITLE
+           ----------------------------------------------------- */
+
+        const title =
+            container.querySelector(
+                "h1"
+            );
+
+
+        if (title) {
+
+            title.textContent =
+                lang.title;
+
+        }
+
+
+        /* -----------------------------------------------------
+           TAGLINE
+           ----------------------------------------------------- */
+
+        const tagline =
+            container.querySelector(
+                ".tagline"
+            );
+
+
+        if (tagline) {
+
+            tagline.textContent =
+                lang.tagline;
+
+        }
+
+
         /* -----------------------------------------------------
            WELCOME
            ----------------------------------------------------- */
 
-        container
-            .querySelectorAll(
-                "h1, h2, h3"
-            )
-            .forEach(function (element) {
+        const headings =
+            container.querySelectorAll(
+                "h2, h3"
+            );
+
+
+        headings.forEach(
+            function (heading) {
 
                 const text =
-                    element.textContent
+                    heading.textContent
                         .trim();
 
 
                 if (
                     text === "Welcome!" ||
+                    text === "स्वागत है!" ||
+                    text === "ಸ್ವಾಗತ!" ||
+                    text === "வரவேற்கிறோம்!" ||
                     text === "സ്വാഗതം!" ||
                     text === "స్వాగతం!"
                 ) {
 
-                    element.textContent =
+                    heading.textContent =
                         lang.welcome;
 
                 }
 
-            });
+            }
+        );
 
 
         /* -----------------------------------------------------
@@ -5538,182 +5732,199 @@ function goBack() {
 
         container
             .querySelectorAll(
-                "p, div, span"
+                "p"
             )
-            .forEach(function (element) {
+            .forEach(
+                function (paragraph) {
 
-                const text =
-                    element.textContent
-                        .replace(
-                            /\s+/g,
-                            " "
-                        )
-                        .trim();
+                    const text =
+                        paragraph.textContent
+                            .replace(
+                                /\s+/g,
+                                " "
+                            )
+                            .trim();
 
 
-                if (
-                    text ===
-                        "Select how you want to continue" ||
+                    if (
+                        text ===
+                            "Select how you want to continue" ||
 
-                    text ===
-                        "തുടരാൻ നിങ്ങൾക്ക് എങ്ങനെ വേണമെന്ന് തിരഞ്ഞെടുക്കുക" ||
+                        text ===
+                            "जारी रखने के लिए चुनें" ||
 
-                    text ===
-                        "కొనసాగించడానికి మీరు ఎలా కొనసాగాలనుకుంటున్నారో ఎంచుకోండి"
-                ) {
+                        text ===
+                            "ಮುಂದುವರಿಯಲು ನೀವು ಹೇಗೆ ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ" ||
 
-                    element.textContent =
-                        lang.select;
+                        text ===
+                            "தொடர விரும்பும் முறையைத் தேர்ந்தெடுக்கவும்" ||
+
+                        text ===
+                            "തുടരാൻ നിങ്ങൾക്ക് എങ്ങനെ വേണമെന്ന് തിരഞ്ഞെടുക്കുക" ||
+
+                        text ===
+                            "కొనసాగించడానికి మీరు ఎలా కొనసాగాలనుకుంటున్నారో ఎంచుకోండి"
+                    ) {
+
+                        paragraph.textContent =
+                            lang.select;
+
+                    }
 
                 }
-
-            });
+            );
 
 
         /* -----------------------------------------------------
-           TAGLINE
+           CUSTOMER BUTTON
            ----------------------------------------------------- */
 
-        container
-            .querySelectorAll("p")
-            .forEach(function (element) {
-
-                const text =
-                    element.textContent
-                        .trim();
+        const customerButton =
+            container.querySelector(
+                'button[onclick="customerLogin()"]'
+            );
 
 
-                if (
-                    text.includes(
-                        "Trusted"
-                    ) ||
-                    text.includes(
-                        "വിശ്വസനീയ"
-                    ) ||
-                    text.includes(
-                        "విశ్వసనీయ"
-                    )
-                ) {
+        if (customerButton) {
 
-                    element.textContent =
-                        lang.tagline;
+            customerButton.innerHTML =
+                "👤 " +
+                lang.customer;
 
-                }
-
-            });
+        }
 
 
         /* -----------------------------------------------------
-           BUTTONS
+           WORKER BUTTON
            ----------------------------------------------------- */
 
-        container
-            .querySelectorAll(
-                "button"
-            )
-            .forEach(function (button) {
-
-                const text =
-                    button.textContent
-                        .trim();
+        const workerButton =
+            container.querySelector(
+                'button[onclick="workerLogin()"]'
+            );
 
 
-                /* CUSTOMER */
+        if (workerButton) {
 
-                if (
-                    text.includes(
-                        "I'm a Customer"
-                    ) ||
-                    text.includes(
-                        "मैं ग्राहक हूँ"
-                    ) ||
-                    text.includes(
-                        "ನಾನು ಗ್ರಾಹಕ"
-                    ) ||
-                    text.includes(
-                        "நான் வாடிக்கையாளர்"
-                    ) ||
-                    text.includes(
-                        "ഞാൻ ഒരു ഉപഭോക്താവാണ്"
-                    ) ||
-                    text.includes(
-                        "నేను కస్టమర్‌ను"
-                    )
-                ) {
+            workerButton.innerHTML =
+                "👷 " +
+                lang.worker;
 
-                    button.innerHTML =
-                        "👤 " +
-                        lang.customer;
-
-                }
+        }
 
 
-                /* WORKER */
+        /* -----------------------------------------------------
+           ADMIN BUTTON
+           ----------------------------------------------------- */
 
-                else if (
-                    text.includes(
-                        "I'm a Worker"
-                    ) ||
-                    text.includes(
-                        "मैं एक कर्मचारी हूँ"
-                    ) ||
-                    text.includes(
-                        "ನಾನು ಕೆಲಸಗಾರ"
-                    ) ||
-                    text.includes(
-                        "நான் தொழிலாளர்"
-                    ) ||
-                    text.includes(
-                        "ഞാൻ ഒരു തൊഴിലാളിയാണ്"
-                    ) ||
-                    text.includes(
-                        "నేను కార్మికుడిని"
-                    )
-                ) {
-
-                    button.innerHTML =
-                        "👷 " +
-                        lang.worker;
-
-                }
+        const adminButton =
+            container.querySelector(
+                'button[onclick="adminLogin()"]'
+            );
 
 
-                /* ADMIN */
+        if (adminButton) {
 
-                else if (
-                    text.includes(
-                        "Cooperative Admin"
-                    ) ||
-                    text.includes(
-                        "सहकारी प्रशासक"
-                    ) ||
-                    text.includes(
-                        "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು"
-                    ) ||
-                    text.includes(
-                        "கூட்டுறவு நிர்வாகி"
-                    ) ||
-                    text.includes(
-                        "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ"
-                    ) ||
-                    text.includes(
-                        "సహకార నిర్వాహకుడు"
-                    )
-                ) {
+            adminButton.innerHTML =
+                "🏢 " +
+                lang.admin;
 
-                    button.innerHTML =
-                        "🏢 " +
-                        lang.admin;
-
-                }
-
-            });
+        }
 
     }
 
 
     /* =========================================================
-       LANGUAGE CHANGE
+       CHANGE LANGUAGE
+       ========================================================= */
+
+    function changeLanguage(
+        language
+    ) {
+
+        if (
+            !COOP_SEVA_LANGUAGES[
+                language
+            ]
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * Save selected language.
+         */
+
+        localStorage.setItem(
+            "coOpLanguage",
+            language
+        );
+
+
+        /*
+         * Synchronize all dropdowns.
+         */
+
+        const selectors = [
+
+            document.getElementById(
+                "coOpLanguage"
+            ),
+
+            document.getElementById(
+                "languageSelector"
+            ),
+
+            document.getElementById(
+                "coOpPopupLanguage"
+            )
+
+        ];
+
+
+        selectors.forEach(
+            function (selector) {
+
+                if (selector) {
+
+                    selector.value =
+                        language;
+
+                }
+
+            }
+        );
+
+
+        /*
+         * Apply our complete landing
+         * page translation.
+         */
+
+        setTimeout(
+            translateLandingPage,
+            50
+        );
+
+
+        setTimeout(
+            translateLandingPage,
+            300
+        );
+
+
+        setTimeout(
+            translateLandingPage,
+            700
+        );
+
+    }
+
+
+    /* =========================================================
+       LISTEN FOR DROPDOWN CHANGES
        ========================================================= */
 
     document.addEventListener(
@@ -5723,7 +5934,9 @@ function goBack() {
             if (
                 !event.target
             ) {
+
                 return;
+
             }
 
 
@@ -5737,33 +5950,9 @@ function goBack() {
                 id === "coOpPopupLanguage"
             ) {
 
-                const language =
-                    event.target.value;
-
-
-                if (
-                    language === "ml" ||
-                    language === "te"
-                ) {
-
-                    localStorage.setItem(
-                        "coOpLanguage",
-                        language
-                    );
-
-
-                    setTimeout(
-                        translateNewLanguages,
-                        100
-                    );
-
-
-                    setTimeout(
-                        translateNewLanguages,
-                        400
-                    );
-
-                }
+                changeLanguage(
+                    event.target.value
+                );
 
             }
 
@@ -5773,58 +5962,97 @@ function goBack() {
 
 
     /* =========================================================
-       KEEP NEW LANGUAGES AVAILABLE
+       INITIALIZE
        ========================================================= */
 
-    function initializeNewLanguages() {
+    function initialize() {
 
-        addNewLanguages();
-
-        translateNewLanguages();
-
-    }
+        addLanguageOptions();
 
 
-    if (
-        document.readyState ===
-        "loading"
-    ) {
+        const language =
+            getLanguage();
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
 
-                setTimeout(
-                    initializeNewLanguages,
-                    300
-                );
+        /*
+         * Make all selectors show the
+         * current language.
+         */
+
+        const selectors = [
+
+            document.getElementById(
+                "coOpLanguage"
+            ),
+
+            document.getElementById(
+                "languageSelector"
+            ),
+
+            document.getElementById(
+                "coOpPopupLanguage"
+            )
+
+        ];
+
+
+        selectors.forEach(
+            function (selector) {
+
+                if (selector) {
+
+                    selector.value =
+                        language;
+
+                }
 
             }
         );
 
-    } else {
 
-        setTimeout(
-            initializeNewLanguages,
-            300
-        );
+        translateLandingPage();
 
     }
 
 
     /* =========================================================
-       WATCH FOR NEW SCREENS / DROPDOWN RECREATION
+       WATCH FOR YOUR APP REDRAWING THE PAGE
        ========================================================= */
 
-    if (document.body) {
+    function startObserver() {
+
+        if (
+            !document.body
+        ) {
+
+            return;
+
+        }
+
+
+        let timer;
+
 
         const observer =
             new MutationObserver(
                 function () {
 
-                    addNewLanguages();
+                    clearTimeout(
+                        timer
+                    );
 
-                    translateNewLanguages();
+
+                    timer =
+                        setTimeout(
+                            function () {
+
+                                addLanguageOptions();
+
+                                translateLandingPage();
+
+                            },
+                            100
+                        );
 
                 }
             );
@@ -5840,123 +6068,40 @@ function goBack() {
 
     }
 
-})();
-/* ============================================================
-   FIX: COOPERATIVE ADMIN FOR ALL LANGUAGES
-   ============================================================ */
 
-(function () {
+    /* =========================================================
+       START
+       ========================================================= */
 
-    function fixCooperativeAdmin() {
+    if (
+        document.readyState ===
+        "loading"
+    ) {
 
-        const language =
-            localStorage.getItem("coOpLanguage") || "en";
-
-        const adminTranslations = {
-
-            en: "Cooperative Admin",
-
-            hi: "सहकारी प्रशासक",
-
-            kn: "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು",
-
-            ta: "கூட்டுறவு நிர்வாகி",
-
-            ml: "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ",
-
-            te: "సహకార నిర్వాహకుడు"
-
-        };
-
-        const buttons =
-            document.querySelectorAll("button");
-
-        buttons.forEach(function (button) {
-
-            const text =
-                button.textContent
-                    .replace(/\s+/g, " ")
-                    .trim();
-
-            if (
-                text.includes("Cooperative Admin") ||
-                text.includes("सहकारी प्रशासक") ||
-                text.includes("ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು") ||
-                text.includes("கூட்டுறவு நிர்வாகி") ||
-                text.includes("സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ") ||
-                text.includes("సహకార నిర్వాహకుడు")
-            ) {
-
-                button.innerHTML =
-                    "🏢 " +
-                    adminTranslations[language];
-
-            }
-
-        });
-
-    }
-
-
-    /* Run when page loads */
-
-    setTimeout(
-        fixCooperativeAdmin,
-        300
-    );
-
-
-    /* Run whenever language changes */
-
-    document.addEventListener(
-        "change",
-        function (event) {
-
-            if (
-                event.target &&
-                (
-                    event.target.id === "coOpLanguage" ||
-                    event.target.id === "languageSelector" ||
-                    event.target.id === "coOpPopupLanguage"
-                )
-            ) {
-
-                setTimeout(
-                    fixCooperativeAdmin,
-                    300
-                );
-
-            }
-
-        }
-    );
-
-
-    /* Keep it fixed if the app redraws the screen */
-
-    const observer =
-        new MutationObserver(
+        document.addEventListener(
+            "DOMContentLoaded",
             function () {
 
                 setTimeout(
-                    fixCooperativeAdmin,
-                    50
+                    initialize,
+                    300
                 );
 
+                startObserver();
+
             }
         );
 
+    } else {
 
-    if (document.body) {
-
-        observer.observe(
-            document.body,
-            {
-                childList: true,
-                subtree: true
-            }
+        setTimeout(
+            initialize,
+            300
         );
+
+        startObserver();
 
     }
+
 
 })();
