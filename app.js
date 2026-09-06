@@ -4249,3 +4249,135 @@ function goBack() {
 
 
 })();
+/* =========================================================
+   CO-OP SEVA - MINIMAL LANGUAGE SYNC FIX
+   ========================================================= */
+
+(function () {
+
+    function syncSelectedLanguage() {
+
+        const popupSelect =
+            document.getElementById("coOpPopupLanguage");
+
+        const mainSelect =
+            document.getElementById("coOpLanguage");
+
+        if (!popupSelect) {
+            return;
+        }
+
+        const selected =
+            popupSelect.value || "en";
+
+        localStorage.setItem(
+            "coOpLanguage",
+            selected
+        );
+
+        /*
+         * Connect the popup to the EXISTING language selector.
+         */
+        if (mainSelect) {
+
+            mainSelect.value = selected;
+
+            mainSelect.dispatchEvent(
+                new Event("change", {
+                    bubbles: true
+                })
+            );
+        }
+
+        /*
+         * Refresh the existing translation system.
+         */
+        if (typeof window.translatePage === "function") {
+
+            try {
+                window.translatePage();
+            }
+
+            catch (error) {
+                console.log(
+                    "Language translation refresh:",
+                    error
+                );
+            }
+        }
+
+    }
+
+
+    /*
+     * Detect the Continue button inside the language popup.
+     */
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    "#coOpLanguageContinue"
+                );
+
+            if (!button) {
+                return;
+            }
+
+            /*
+             * Let the original popup code finish first,
+             * then synchronize the selected language.
+             */
+            setTimeout(
+                syncSelectedLanguage,
+                100
+            );
+
+        },
+        false
+    );
+
+
+    /*
+     * Keep the selected popup language saved.
+     */
+    document.addEventListener(
+        "change",
+        function (event) {
+
+            if (
+                event.target &&
+                event.target.id ===
+                "coOpPopupLanguage"
+            ) {
+
+                localStorage.setItem(
+                    "coOpLanguage",
+                    event.target.value
+                );
+
+            }
+
+        },
+        false
+    );
+
+
+    /*
+     * Make the existing translation function globally available.
+     */
+    setTimeout(function () {
+
+        if (
+            typeof window.translatePage !== "function" &&
+            typeof translatePage === "function"
+        ) {
+
+            window.translatePage =
+                translatePage;
+        }
+
+    }, 0);
+
+})();
