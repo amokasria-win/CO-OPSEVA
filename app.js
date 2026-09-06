@@ -5265,3 +5265,65 @@ function goBack() {
     }
 
 })();
+/* REMOVE LANGUAGE POPUP - KEEP TOP LANGUAGE DROPDOWN */
+
+(function () {
+
+    function removeLanguagePopup() {
+
+        const popup =
+            document.getElementById(
+                "coOpSevaNewLanguagePopup"
+            );
+
+        if (popup) {
+            popup.remove();
+        }
+
+        const popupStyle =
+            document.getElementById(
+                "coOpSevaLanguagePopupStyle"
+            );
+
+        if (popupStyle) {
+            popupStyle.remove();
+        }
+
+        const oldPopup1 =
+            document.getElementById(
+                "languagePopup"
+            );
+
+        if (oldPopup1) {
+            oldPopup1.remove();
+        }
+
+        const oldPopup2 =
+            document.getElementById(
+                "coOpLanguagePopup"
+            );
+
+        if (oldPopup2) {
+            oldPopup2.remove();
+        }
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            removeLanguagePopup
+        );
+
+    } else {
+
+        removeLanguagePopup();
+
+    }
+
+})();
