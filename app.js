@@ -5841,3 +5841,122 @@ function goBack() {
     }
 
 })();
+/* ============================================================
+   FIX: COOPERATIVE ADMIN FOR ALL LANGUAGES
+   ============================================================ */
+
+(function () {
+
+    function fixCooperativeAdmin() {
+
+        const language =
+            localStorage.getItem("coOpLanguage") || "en";
+
+        const adminTranslations = {
+
+            en: "Cooperative Admin",
+
+            hi: "सहकारी प्रशासक",
+
+            kn: "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು",
+
+            ta: "கூட்டுறவு நிர்வாகி",
+
+            ml: "സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ",
+
+            te: "సహకార నిర్వాహకుడు"
+
+        };
+
+        const buttons =
+            document.querySelectorAll("button");
+
+        buttons.forEach(function (button) {
+
+            const text =
+                button.textContent
+                    .replace(/\s+/g, " ")
+                    .trim();
+
+            if (
+                text.includes("Cooperative Admin") ||
+                text.includes("सहकारी प्रशासक") ||
+                text.includes("ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು") ||
+                text.includes("கூட்டுறவு நிர்வாகி") ||
+                text.includes("സഹകരണ അഡ്മിനിസ്ട്രേറ്റർ") ||
+                text.includes("సహకార నిర్వాహకుడు")
+            ) {
+
+                button.innerHTML =
+                    "🏢 " +
+                    adminTranslations[language];
+
+            }
+
+        });
+
+    }
+
+
+    /* Run when page loads */
+
+    setTimeout(
+        fixCooperativeAdmin,
+        300
+    );
+
+
+    /* Run whenever language changes */
+
+    document.addEventListener(
+        "change",
+        function (event) {
+
+            if (
+                event.target &&
+                (
+                    event.target.id === "coOpLanguage" ||
+                    event.target.id === "languageSelector" ||
+                    event.target.id === "coOpPopupLanguage"
+                )
+            ) {
+
+                setTimeout(
+                    fixCooperativeAdmin,
+                    300
+                );
+
+            }
+
+        }
+    );
+
+
+    /* Keep it fixed if the app redraws the screen */
+
+    const observer =
+        new MutationObserver(
+            function () {
+
+                setTimeout(
+                    fixCooperativeAdmin,
+                    50
+                );
+
+            }
+        );
+
+
+    if (document.body) {
+
+        observer.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
+
+    }
+
+})();
