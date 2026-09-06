@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Co-Op Seva</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet Map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="welcome-container">
+
+        <div class="logo">🤝</div>
+
+        <h1>CO-OP SEVA</h1>
+
+        <p class="tagline">
+            Trusted Workers. Fair Bookings.<br>
+            Stronger Cooperatives.
+        </p>
+
+        <h2>Welcome!</h2>
+
+        <p>Select how you want to continue</p>
+
+        <button onclick="customerLogin()">
+            👤 I'm a Customer
+        </button>
+
+        <button onclick="workerLogin()">
+            👷 I'm a Worker
+        </button>
+
+        <button onclick="adminLogin()">
+            🏢 Cooperative Admin
+        </button>
+
+    </div>
+
+
+    <!-- Leaflet Map -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef7f1, #dcefe5);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.welcome-container {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 30px;
+    color: #174d35;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #246b49;
+    margin-bottom: 12px;
+}
+
+.tagline {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.welcome-container > p {
+    color: #555;
+    margin-bottom: 18px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin: 7px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #218653;
+    color: white;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+
+.worker-card {
+    background: #f5faf7;
+    border: 1px solid #d9ebe0;
+    padding: 20px;
+    margin: 16px 0;
+    border-radius: 16px;
+    text-align: left;
+}
+
+.worker-card h2 {
+    margin-bottom: 12px;
+    color: #174d35;
+}
+
+.worker-card p {
+    margin: 8px 0;
+    color: #444;
+    line-height: 1.4;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #d9ebe0;
+    margin: 15px 0;
+}
+
+strong {
+    color: #174d35;
+}
+
+/* =========================
+   MAP
+========================= */
+
+#serviceMap {
+    width: 100%;
+    height: 420px;
+    border-radius: 18px;
+    margin: 18px 0;
+    border: 2px solid #d9ebe0;
+}
+
+.map-legend {
+    background: #f5faf7;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.map-legend p {
+    margin: 6px 0;
+}
+
+.map-title {
+    margin-bottom: 5px;
+}
+
+.map-subtitle {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   PROGRESS TRACKER
+========================= */
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.progress-step {
+    text-align: center;
+    flex: 1;
+    opacity: 0.35;
+}
+
+.progress-step.active {
+    opacity: 1;
+}
+
+.progress-icon {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.progress-step p {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.progress-line {
+    height: 4px;
+    background: #d9ebe0;
+    flex: 1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .welcome-container {
+        padding: 22px 18px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    #serviceMap {
+        height: 350px;
+    }
+
+    .progress-container {
+        gap: 2px;
+    }
+
+    .progress-icon {
+        font-size: 22px;
+    }
+
+    .progress-step p {
+        font-size: 10px;
+    }
+}
