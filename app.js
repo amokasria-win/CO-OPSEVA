@@ -4250,68 +4250,120 @@ function goBack() {
 
 })();
 /* =========================================================
-   CO-OP SEVA - MINIMAL LANGUAGE SYNC FIX
+   CO-OP SEVA - FINAL LANGUAGE POPUP FIX
+   ---------------------------------------------------------
+   KEEP ALL ORIGINAL APP.JS CODE ABOVE UNCHANGED.
+   This connects BOTH existing language popups to the
+   ORIGINAL translation system.
    ========================================================= */
 
 (function () {
 
-    function syncSelectedLanguage() {
-
-        const popupSelect =
-            document.getElementById("coOpPopupLanguage");
-
-        const mainSelect =
-            document.getElementById("coOpLanguage");
-
-        if (!popupSelect) {
-            return;
-        }
+    function applySavedLanguage() {
 
         const selected =
-            popupSelect.value || "en";
-
-        localStorage.setItem(
-            "coOpLanguage",
-            selected
-        );
+            localStorage.getItem("coOpLanguage") || "en";
 
         /*
-         * Connect the popup to the EXISTING language selector.
+         * ORIGINAL MAIN LANGUAGE SELECTOR
+         *
+         * This is important because the original app's
+         * translation system listens to this selector.
          */
-        if (mainSelect) {
 
-            mainSelect.value = selected;
+        const mainSelector =
+            document.getElementById("coOpLanguage");
 
-            mainSelect.dispatchEvent(
+        if (mainSelector) {
+
+            mainSelector.value = selected;
+
+            /*
+             * Trigger the ORIGINAL change event.
+             *
+             * This updates the original currentLanguage
+             * variable and calls the original translatePage().
+             */
+
+            mainSelector.dispatchEvent(
                 new Event("change", {
                     bubbles: true
                 })
             );
         }
 
+
         /*
-         * Refresh the existing translation system.
+         * SECOND / EXTRA LANGUAGE SELECTOR
          */
-        if (typeof window.translatePage === "function") {
 
-            try {
-                window.translatePage();
-            }
+        const extraSelector =
+            document.getElementById("languageSelector");
 
-            catch (error) {
-                console.log(
-                    "Language translation refresh:",
-                    error
-                );
-            }
+        if (extraSelector) {
+
+            extraSelector.value = selected;
         }
 
+
+        /*
+         * Keep popup dropdown synchronized too.
+         */
+
+        const popupSelector =
+            document.getElementById("coOpPopupLanguage");
+
+        if (popupSelector) {
+
+            popupSelector.value = selected;
+        }
     }
 
 
-    /*
-     * Detect the Continue button inside the language popup.
-     */
+    /* =====================================================
+       FIRST LANGUAGE POPUP
+       ID: continueLanguageBtn
+       ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    "#continueLanguageBtn"
+                );
+
+            if (!button) {
+                return;
+            }
+
+            /*
+             * The ORIGINAL popup saves the selected language
+             * and then removes itself.
+             *
+             * Wait a moment so the original handler finishes.
+             */
+
+            setTimeout(
+                function () {
+
+                    applySavedLanguage();
+
+                },
+                150
+            );
+
+        },
+        false
+    );
+
+
+    /* =====================================================
+       SECOND LANGUAGE POPUP
+       ID: coOpLanguageContinue
+       ===================================================== */
+
     document.addEventListener(
         "click",
         function (event) {
@@ -4326,12 +4378,21 @@ function goBack() {
             }
 
             /*
-             * Let the original popup code finish first,
-             * then synchronize the selected language.
+             * Let the ORIGINAL popup handler:
+             * 1. save the language
+             * 2. remove the popup
+             *
+             * Then synchronize with the original
+             * translation system.
              */
+
             setTimeout(
-                syncSelectedLanguage,
-                100
+                function () {
+
+                    applySavedLanguage();
+
+                },
+                150
             );
 
         },
@@ -4339,9 +4400,42 @@ function goBack() {
     );
 
 
-    /*
-     * Keep the selected popup language saved.
-     */
+    /* =====================================================
+       EXTRA LANGUAGE SELECTOR
+       ID: languageSelector
+       ===================================================== */
+
+    document.addEventListener(
+        "change",
+        function (event) {
+
+            if (
+                event.target &&
+                event.target.id ===
+                "languageSelector"
+            ) {
+
+                const selected =
+                    event.target.value;
+
+                localStorage.setItem(
+                    "coOpLanguage",
+                    selected
+                );
+
+                applySavedLanguage();
+            }
+
+        },
+        false
+    );
+
+
+    /* =====================================================
+       POPUP DROPDOWN
+       ID: coOpPopupLanguage
+       ===================================================== */
+
     document.addEventListener(
         "change",
         function (event) {
@@ -4352,11 +4446,20 @@ function goBack() {
                 "coOpPopupLanguage"
             ) {
 
+                const selected =
+                    event.target.value;
+
+                /*
+                 * Save immediately.
+                 *
+                 * The Continue button will then use
+                 * this saved value.
+                 */
+
                 localStorage.setItem(
                     "coOpLanguage",
-                    event.target.value
+                    selected
                 );
-
             }
 
         },
@@ -4364,20 +4467,55 @@ function goBack() {
     );
 
 
-    /*
-     * Make the existing translation function globally available.
-     */
-    setTimeout(function () {
+    /* =====================================================
+       APPLY SAVED LANGUAGE AFTER PAGE LOAD
+       ===================================================== */
+
+    function initializeLanguage() {
+
+        const saved =
+            localStorage.getItem(
+                "coOpLanguage"
+            );
 
         if (
-            typeof window.translatePage !== "function" &&
-            typeof translatePage === "function"
+            saved === "en" ||
+            saved === "hi" ||
+            saved === "kn" ||
+            saved === "ta"
         ) {
 
-            window.translatePage =
-                translatePage;
-        }
+            /*
+             * Give the ORIGINAL translation system
+             * a chance to finish loading first.
+             */
 
-    }, 0);
+            setTimeout(
+                function () {
+
+                    applySavedLanguage();
+
+                },
+                200
+            );
+        }
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeLanguage
+        );
+
+    } else {
+
+        initializeLanguage();
+    }
+
 
 })();
