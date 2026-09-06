@@ -4250,101 +4250,126 @@ function goBack() {
 
 })();
 /* ============================================================
-   CO-OP SEVA
-   FINAL COMPLETE LANGUAGE FIX
+   CO-OP SEVA - FINAL LANGUAGE SYSTEM
    ============================================================
-   
    IMPORTANT:
-   - DO NOT DELETE YOUR ORIGINAL APP.JS CODE
-   - Paste this entire block AFTER the last line of app.js
-   - This fixes:
-       English → Hindi
-       English → Kannada
-       English → Tamil
-       Hindi → Kannada
-       Hindi → Tamil
-       Kannada → Hindi
-       Kannada → Tamil
-       Tamil → Hindi
-       Tamil → Kannada
+   DELETE ALL PREVIOUS LANGUAGE-FIX BLOCKS FIRST.
 
-   It also keeps emojis such as 👤 👷 🏢 unchanged.
+   Keep the original app.js code unchanged.
+   Paste ONLY this block at the very bottom.
    ============================================================ */
 
 (function () {
 
-    /* ========================================================
-       LANDING PAGE TRANSLATIONS
-       ======================================================== */
+    "use strict";
 
-    const COOP_SEVA_LANGUAGE_TEXT = {
 
-        "Welcome!": {
-            en: "Welcome!",
-            hi: "स्वागत है!",
-            kn: "ಸ್ವಾಗತ!",
-            ta: "வரவேற்கிறோம்!"
+    /* =========================================================
+       ALL LANDING PAGE TRANSLATIONS
+       ========================================================= */
+
+    const LANG = {
+
+        en: {
+            welcome:
+                "Welcome!",
+
+            continueText:
+                "Select how you want to continue",
+
+            customer:
+                "I'm a Customer",
+
+            worker:
+                "I'm a Worker",
+
+            admin:
+                "Cooperative Admin",
+
+            tagline:
+                "Trusted Workers • Fair Bookings • Stronger Cooperatives"
         },
 
-        "Select how you want to continue": {
-            en: "Select how you want to continue",
-            hi: "जारी रखने के लिए चुनें",
-            kn: "ಮುಂದುವರಿಯಲು ನೀವು ಹೇಗೆ ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ",
-            ta: "தொடர விரும்பும் முறையைத் தேர்ந்தெடுக்கவும்"
+
+        hi: {
+            welcome:
+                "स्वागत है!",
+
+            continueText:
+                "जारी रखने के लिए चुनें",
+
+            customer:
+                "मैं ग्राहक हूँ",
+
+            worker:
+                "मैं एक कर्मचारी हूँ",
+
+            admin:
+                "सहकारी प्रशासक",
+
+            tagline:
+                "विश्वसनीय कर्मचारी • निष्पक्ष बुकिंग • मजबूत सहकारी समितियाँ"
         },
 
-        "I'm a Customer": {
-            en: "I'm a Customer",
-            hi: "मैं ग्राहक हूँ",
-            kn: "ನಾನು ಗ್ರಾಹಕ",
-            ta: "நான் வாடிக்கையாளர்"
+
+        kn: {
+            welcome:
+                "ಸ್ವಾಗತ!",
+
+            continueText:
+                "ಮುಂದುವರಿಯಲು ನೀವು ಹೇಗೆ ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+
+            customer:
+                "ನಾನು ಗ್ರಾಹಕ",
+
+            worker:
+                "ನಾನು ಕೆಲಸಗಾರ",
+
+            admin:
+                "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು",
+
+            tagline:
+                "ವಿಶ್ವಾಸಾರ್ಹ ಕೆಲಸಗಾರರು • ನ್ಯಾಯಯುತ ಬುಕ್ಕಿಂಗ್‌ಗಳು • ಬಲವಾದ ಸಹಕಾರ ಸಂಘಗಳು"
         },
 
-        "I'm a Worker": {
-            en: "I'm a Worker",
-            hi: "मैं एक कर्मचारी हूँ",
-            kn: "ನಾನು ಕೆಲಸಗಾರ",
-            ta: "நான் தொழிலாளர்"
-        },
 
-        "Cooperative Admin": {
-            en: "Cooperative Admin",
-            hi: "सहकारी प्रशासक",
-            kn: "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು",
-            ta: "கூட்டுறவு நிர்வாகி"
-        },
+        ta: {
+            welcome:
+                "வரவேற்கிறோம்!",
 
-        "Trusted Workers • Fair Bookings • Stronger Cooperatives": {
-            en: "Trusted Workers • Fair Bookings • Stronger Cooperatives",
-            hi: "विश्वसनीय कर्मचारी • निष्पक्ष बुकिंग • मजबूत सहकारी समितियाँ",
-            kn: "ವಿಶ್ವಾಸಾರ್ಹ ಕೆಲಸಗಾರರು • ನ್ಯಾಯಯುತ ಬುಕ್ಕಿಂಗ್‌ಗಳು • ಬಲವಾದ ಸಹಕಾರ ಸಂಘಗಳು",
-            ta: "நம்பகமான தொழிலாளர்கள் • நியாயமான முன்பதிவுகள் • வலுவான கூட்டுறவுகள்"
-        },
+            continueText:
+                "தொடர விரும்பும் முறையைத் தேர்ந்தெடுக்கவும்",
 
-        "CO-OP SEVA": {
-            en: "CO-OP SEVA",
-            hi: "को-ऑप सेवा",
-            kn: "ಕೋ-ಆಪ್ ಸೇವಾ",
-            ta: "கோ-ஆப் சேவா"
+            customer:
+                "நான் வாடிக்கையாளர்",
+
+            worker:
+                "நான் தொழிலாளர்",
+
+            admin:
+                "கூட்டுறவு நிர்வாகி",
+
+            tagline:
+                "நம்பகமான தொழிலாளர்கள் • நியாயமான முன்பதிவுகள் • வலுவான கூட்டுறவுகள்"
         }
 
     };
 
 
-    /* ========================================================
+    /* =========================================================
        GET CURRENT LANGUAGE
-       ======================================================== */
+       ========================================================= */
 
-    function getCurrentCoOpLanguage() {
+    function getLanguage() {
 
         const saved =
             localStorage.getItem("coOpLanguage");
 
         if (
+            saved === "en" ||
             saved === "hi" ||
             saved === "kn" ||
-            saved === "ta" ||
-            saved === "en"
+            saved === "ta"
         ) {
             return saved;
         }
@@ -4353,332 +4378,487 @@ function goBack() {
     }
 
 
-    /* ========================================================
-       FIND ORIGINAL ENGLISH KEY FROM ANY LANGUAGE
-       ======================================================== */
+    /* =========================================================
+       CLEAN TEXT
+       ========================================================= */
 
-    function findTranslationKey(text) {
+    function clean(text) {
 
-        const cleanText =
-            text
-                .replace(/\s+/g, " ")
-                .trim();
+        return String(text || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+    }
+
+
+    /* =========================================================
+       GET TEXT WITHOUT EMOJI
+       ========================================================= */
+
+    function removeEmoji(text) {
+
+        return String(text || "")
+            .replace(
+                /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]/gu,
+                ""
+            )
+            .replace(/\s+/g, " ")
+            .trim();
+
+    }
+
+
+    /* =========================================================
+       FIND THE LANDING PAGE
+       ========================================================= */
+
+    function getLandingContainer() {
+
+        /*
+         * The original app uses .welcome-container.
+         */
+
+        const containers =
+            document.querySelectorAll(
+                ".welcome-container"
+            );
+
+        if (!containers.length) {
+            return null;
+        }
+
+        /*
+         * Use the visible container.
+         */
 
         for (
-            const key in COOP_SEVA_LANGUAGE_TEXT
+            const container of containers
         ) {
 
-            const languageValues =
-                COOP_SEVA_LANGUAGE_TEXT[key];
+            const style =
+                window.getComputedStyle(
+                    container
+                );
 
-            for (
-                const language in languageValues
+            if (
+                style.display !== "none" &&
+                style.visibility !== "hidden"
             ) {
 
-                if (
-                    languageValues[language] ===
-                    cleanText
-                ) {
-
-                    return key;
-                }
+                return container;
 
             }
+
+        }
+
+        return containers[0];
+
+    }
+
+
+    /* =========================================================
+       SET TEXT WHILE PRESERVING EMOJI
+       ========================================================= */
+
+    function setElementText(
+        element,
+        translatedText
+    ) {
+
+        if (!element) {
+            return;
+        }
+
+        const current =
+            element.textContent || "";
+
+        /*
+         * Preserve the emoji at the beginning.
+         */
+
+        const emojiMatch =
+            current.match(
+                /^[\s]*([\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}])\s*/u
+            );
+
+        if (emojiMatch) {
+
+            element.textContent =
+                emojiMatch[1] +
+                " " +
+                translatedText;
+
+        } else {
+
+            element.textContent =
+                translatedText;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       IDENTIFY LANDING PAGE ELEMENT
+       ========================================================= */
+
+    function identifyElement(element) {
+
+        if (!element) {
+            return null;
+        }
+
+        const text =
+            clean(
+                removeEmoji(
+                    element.textContent
+                )
+            );
+
+        if (!text) {
+            return null;
+        }
+
+
+        /* WELCOME */
+
+        if (
+            text === "Welcome!" ||
+            text === "स्वागत है!" ||
+            text === "ಸ್ವಾಗತ!" ||
+            text === "வரவேற்கிறோம்!"
+        ) {
+
+            return "welcome";
+
+        }
+
+
+        /* SELECT HOW TO CONTINUE */
+
+        if (
+            text ===
+                "Select how you want to continue" ||
+
+            text ===
+                "जारी रखने के लिए चुनें" ||
+
+            text ===
+                "ಮುಂದುವರಿಯಲು ನೀವು ಹೇಗೆ ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ" ||
+
+            text ===
+                "தொடர விரும்பும் முறையைத் தேர்ந்தெடுக்கவும்"
+        ) {
+
+            return "continueText";
+
+        }
+
+
+        /* CUSTOMER */
+
+        if (
+            text === "I'm a Customer" ||
+            text === "मैं ग्राहक हूँ" ||
+            text === "ನಾನು ಗ್ರಾಹಕ" ||
+            text === "நான் வாடிக்கையாளர்"
+        ) {
+
+            return "customer";
+
+        }
+
+
+        /* WORKER */
+
+        if (
+            text === "I'm a Worker" ||
+            text === "मैं एक कर्मचारी हूँ" ||
+            text === "ನಾನು ಕೆಲಸಗಾರ" ||
+            text === "நான் தொழிலாளர்"
+        ) {
+
+            return "worker";
+
+        }
+
+
+        /* ADMIN */
+
+        if (
+            text === "Cooperative Admin" ||
+            text === "सहकारी प्रशासक" ||
+            text === "ಸಹಕಾರಿ ನಿರ್ವಾಹಕರು" ||
+            text === "கூட்டுறவு நிர்வாகி"
+        ) {
+
+            return "admin";
+
+        }
+
+
+        /* =====================================================
+           TAGLINE
+
+           Handles BOTH:
+           • the original bullet version
+           • the mixed version currently appearing on screen
+           ===================================================== */
+
+        if (
+            text.includes("Trusted") ||
+            text.includes("विश्वसनीय") ||
+            text.includes("ವಿಶ್ವಾಸಾರ್ಹ") ||
+            text.includes("நம்பகமான")
+        ) {
+
+            return "tagline";
 
         }
 
         return null;
+
     }
 
 
-    /* ========================================================
-       TRANSLATE TEXT NODES
-       
-       This is the IMPORTANT PART.
-       
-       It works even when the button contains:
-       
-       👤 I'm a Customer
-       
-       because the emoji and text are handled separately.
-       ======================================================== */
+    /* =========================================================
+       FORCE LANDING PAGE LANGUAGE
+       ========================================================= */
 
-    function translateLandingText() {
+    function translateLandingPage() {
 
-        const language =
-            getCurrentCoOpLanguage();
+        const container =
+            getLandingContainer();
 
-        const root =
-            document.body;
-
-        if (!root) {
+        if (!container) {
             return;
         }
 
 
-        const walker =
-            document.createTreeWalker(
-                root,
-                NodeFilter.SHOW_TEXT,
-                {
-                    acceptNode: function (node) {
+        const language =
+            getLanguage();
 
-                        if (
-                            !node.parentElement
-                        ) {
-                            return NodeFilter.FILTER_REJECT;
-                        }
+        const translation =
+            LANG[language];
 
-                        const parent =
-                            node.parentElement;
-
-                        /*
-                         * Don't translate inside the
-                         * language popup itself.
-                         */
-
-                        if (
-                            parent.closest(
-                                "#languagePopup"
-                            ) ||
-                            parent.closest(
-                                "#coOpLanguagePopup"
-                            )
-                        ) {
-                            return NodeFilter.FILTER_REJECT;
-                        }
-
-                        /*
-                         * Ignore script/style.
-                         */
-
-                        if (
-                            parent.tagName ===
-                            "SCRIPT" ||
-                            parent.tagName ===
-                            "STYLE"
-                        ) {
-                            return NodeFilter.FILTER_REJECT;
-                        }
-
-                        return NodeFilter.FILTER_ACCEPT;
-                    }
-                }
-            );
-
-
-        const textNodes = [];
-
-        let node;
-
-        while (
-            (node =
-                walker.nextNode())
-        ) {
-
-            textNodes.push(node);
-
+        if (!translation) {
+            return;
         }
 
 
-        textNodes.forEach(function (textNode) {
+        /*
+         * IMPORTANT:
+         * Only inspect elements that contain actual text.
+         */
 
-            const originalText =
-                textNode.nodeValue;
+        const elements =
+            container.querySelectorAll(
+                "h1, h2, h3, p, button, div, span"
+            );
+
+
+        elements.forEach(function (element) {
+
+            /*
+             * Don't modify parent elements when they contain
+             * multiple independent pieces of text.
+             */
+
+            const directText =
+                Array.from(
+                    element.childNodes
+                )
+                .filter(function (node) {
+                    return (
+                        node.nodeType ===
+                        Node.TEXT_NODE
+                    );
+                })
+                .map(function (node) {
+                    return node.nodeValue;
+                })
+                .join(" ");
+
+
+            /*
+             * For elements containing children, use the
+             * direct text where possible.
+             */
+
+            const sourceText =
+                clean(
+                    directText ||
+                    element.textContent
+                );
+
+
+            if (!sourceText) {
+                return;
+            }
+
+
+            const key =
+                identifyElement(
+                    element
+                );
+
+
+            if (!key) {
+                return;
+            }
+
+
+            /*
+             * Don't translate a parent container that
+             * contains other buttons/text.
+             */
 
             if (
-                !originalText ||
-                !originalText.trim()
+                element.children.length > 0 &&
+                element.tagName !== "BUTTON"
             ) {
-                return;
-            }
-
-
-            /*
-             * Try the entire text first.
-             */
-
-            const trimmed =
-                originalText
-                    .replace(/\s+/g, " ")
-                    .trim();
-
-            const directKey =
-                findTranslationKey(trimmed);
-
-
-            if (directKey) {
-
-                const translated =
-                    COOP_SEVA_LANGUAGE_TEXT[
-                        directKey
-                    ][language];
 
                 /*
-                 * Keep the original whitespace.
+                 * Allow the tagline paragraph and headings,
+                 * but avoid replacing whole containers.
                  */
 
-                const leading =
-                    originalText.match(
-                        /^\s*/
-                    )?.[0] || "";
-
-                const trailing =
-                    originalText.match(
-                        /\s*$/
-                    )?.[0] || "";
-
-                textNode.nodeValue =
-                    leading +
-                    translated +
-                    trailing;
-
-                return;
-            }
-
-
-            /*
-             * If the node contains emoji + text,
-             * translate ONLY the text part.
-             *
-             * Example:
-             *
-             * " 👤 I'm a Customer "
-             *
-             * becomes:
-             *
-             * " 👤 मैं ग्राहक हूँ "
-             */
-
-            let changedText =
-                originalText;
-
-
-            for (
-                const key in
-                COOP_SEVA_LANGUAGE_TEXT
-            ) {
-
-                const values =
-                    COOP_SEVA_LANGUAGE_TEXT[key];
-
-                const allVersions =
-                    Object.values(values);
-
-
-                for (
-                    const version
-                    of allVersions
+                if (
+                    key !== "tagline" &&
+                    key !== "welcome" &&
+                    key !== "continueText"
                 ) {
-
-                    if (
-                        !version
-                    ) {
-                        continue;
-                    }
-
-
-                    if (
-                        changedText
-                            .includes(version)
-                    ) {
-
-                        changedText =
-                            changedText.replace(
-                                version,
-                                values[language]
-                            );
-
-                    }
-
+                    return;
                 }
 
             }
 
 
-            if (
-                changedText !==
-                originalText
-            ) {
-
-                textNode.nodeValue =
-                    changedText;
-
-            }
+            setElementText(
+                element,
+                translation[key]
+            );
 
         });
+
+
+        /*
+         * =====================================================
+         * EXTRA FORCE FIX FOR THE THREE BUTTONS
+         * =====================================================
+         */
+
+        container
+            .querySelectorAll("button")
+            .forEach(function (button) {
+
+                const key =
+                    identifyElement(
+                        button
+                    );
+
+                if (
+                    key === "customer" ||
+                    key === "worker" ||
+                    key === "admin"
+                ) {
+
+                    setElementText(
+                        button,
+                        translation[key]
+                    );
+
+                }
+
+            });
+
+
+        /*
+         * =====================================================
+         * FORCE FIX FOR TAGLINE
+         * =====================================================
+         */
+
+        container
+            .querySelectorAll("p")
+            .forEach(function (paragraph) {
+
+                const text =
+                    clean(
+                        paragraph.textContent
+                    );
+
+
+                if (
+                    text.includes("Trusted") ||
+                    text.includes("विश्वसनीय") ||
+                    text.includes("ವಿಶ್ವಾಸಾರ್ಹ") ||
+                    text.includes("நம்பகமான")
+                ) {
+
+                    paragraph.textContent =
+                        translation.tagline;
+
+                }
+
+            });
 
     }
 
 
-    /* ========================================================
-       SYNCHRONIZE ORIGINAL LANGUAGE SELECTORS
-       ======================================================== */
+    /* =========================================================
+       SYNCHRONIZE DROPDOWNS
+       ========================================================= */
 
-    function syncLanguageSelectors() {
+    function syncDropdowns() {
 
         const language =
-            getCurrentCoOpLanguage();
+            getLanguage();
 
 
-        const mainSelector =
+        const main =
             document.getElementById(
                 "coOpLanguage"
             );
 
-        if (
-            mainSelector
-        ) {
-
-            mainSelector.value =
-                language;
-
+        if (main) {
+            main.value = language;
         }
 
 
-        const extraSelector =
+        const extra =
             document.getElementById(
                 "languageSelector"
             );
 
-        if (
-            extraSelector
-        ) {
-
-            extraSelector.value =
-                language;
-
+        if (extra) {
+            extra.value = language;
         }
 
 
-        const popupSelector =
+        const popup =
             document.getElementById(
                 "coOpPopupLanguage"
             );
 
-        if (
-            popupSelector
-        ) {
-
-            popupSelector.value =
-                language;
-
+        if (popup) {
+            popup.value = language;
         }
 
     }
 
 
-    /* ========================================================
-       APPLY EVERYTHING
-       ======================================================== */
+    /* =========================================================
+       APPLY LANGUAGE
+       ========================================================= */
 
-    function applyCoOpLanguageFix() {
+    function applyLanguageFix() {
 
-        syncLanguageSelectors();
+        syncDropdowns();
+
 
         /*
-         * First allow the ORIGINAL translation system
-         * to run.
+         * Let the ORIGINAL translation system run first.
          */
 
         try {
@@ -4695,7 +4875,7 @@ function goBack() {
         } catch (error) {
 
             console.warn(
-                "Original translation system:",
+                "Co-Op Seva original translation:",
                 error
             );
 
@@ -4703,24 +4883,26 @@ function goBack() {
 
 
         /*
-         * Then apply our landing-page translations.
+         * Then completely fix the landing page.
          */
 
         setTimeout(
-            function () {
-
-                translateLandingText();
-
-            },
+            translateLandingPage,
             50
+        );
+
+
+        setTimeout(
+            translateLandingPage,
+            250
         );
 
     }
 
 
-    /* ========================================================
-       MAIN LANGUAGE SELECTOR
-       ======================================================== */
+    /* =========================================================
+       LANGUAGE DROPDOWN CHANGE
+       ========================================================= */
 
     document.addEventListener(
         "change",
@@ -4738,213 +4920,191 @@ function goBack() {
 
 
             if (
-                id ===
-                "coOpLanguage" ||
-                id ===
-                "languageSelector" ||
-                id ===
-                "coOpPopupLanguage"
+                id === "coOpLanguage" ||
+                id === "languageSelector" ||
+                id === "coOpPopupLanguage"
             ) {
 
-                const selected =
+                const language =
                     event.target.value;
 
 
                 if (
-                    selected === "en" ||
-                    selected === "hi" ||
-                    selected === "kn" ||
-                    selected === "ta"
+                    language === "en" ||
+                    language === "hi" ||
+                    language === "kn" ||
+                    language === "ta"
                 ) {
 
                     localStorage.setItem(
                         "coOpLanguage",
-                        selected
+                        language
                     );
 
 
                     /*
-                     * Give the original app
-                     * time to update.
+                     * Apply several times because the
+                     * original app may update the page too.
                      */
 
                     setTimeout(
-                        applyCoOpLanguageFix,
-                        100
-                    );
-
-                    setTimeout(
-                        applyCoOpLanguageFix,
-                        400
-                    );
-
-                }
-
-            }
-
-        },
-        true
-    );
-
-
-    /* ========================================================
-       FIRST LANGUAGE POPUP
-       
-       #continueLanguageBtn
-       ======================================================== */
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            const button =
-                event.target.closest(
-                    "#continueLanguageBtn"
-                );
-
-
-            if (
-                !button
-            ) {
-                return;
-            }
-
-
-            /*
-             * The ORIGINAL popup handler saves
-             * coOpLanguage and removes the popup.
-             *
-             * Wait for it to finish.
-             */
-
-            setTimeout(
-                function () {
-
-                    applyCoOpLanguageFix();
-
-                },
-                200
-            );
-
-
-            setTimeout(
-                function () {
-
-                    applyCoOpLanguageFix();
-
-                },
-                600
-            );
-
-        },
-        true
-    );
-
-
-    /* ========================================================
-       SECOND LANGUAGE POPUP
-       
-       #coOpLanguageContinue
-       ======================================================== */
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            const button =
-                event.target.closest(
-                    "#coOpLanguageContinue"
-                );
-
-
-            if (
-                !button
-            ) {
-                return;
-            }
-
-
-            /*
-             * Let the original popup save
-             * the selected language first.
-             */
-
-            setTimeout(
-                function () {
-
-                    applyCoOpLanguageFix();
-
-                },
-                200
-            );
-
-
-            setTimeout(
-                function () {
-
-                    applyCoOpLanguageFix();
-
-                },
-                600
-            );
-
-        },
-        true
-    );
-
-
-    /* ========================================================
-       ALSO WATCH FOR THE APP CHANGING THE PAGE
-       
-       Your app uses document.body.innerHTML when moving
-       between Customer / Worker / Admin pages.
-       ======================================================== */
-
-    const observer =
-        new MutationObserver(
-            function () {
-
-                const language =
-                    getCurrentCoOpLanguage();
-
-
-                if (
-                    language !== "en"
-                ) {
-
-                    setTimeout(
-                        translateLandingText,
+                        applyLanguageFix,
                         50
                     );
 
+                    setTimeout(
+                        applyLanguageFix,
+                        300
+                    );
+
+                    setTimeout(
+                        applyLanguageFix,
+                        700
+                    );
+
                 }
 
             }
-        );
 
+        },
+        true
+    );
+
+
+    /* =========================================================
+       LANGUAGE POPUP - FIRST VERSION
+       ========================================================= */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target.closest(
+                    "#continueLanguageBtn"
+                )
+            ) {
+
+                setTimeout(
+                    applyLanguageFix,
+                    200
+                );
+
+                setTimeout(
+                    applyLanguageFix,
+                    600
+                );
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =========================================================
+       LANGUAGE POPUP - SECOND VERSION
+       ========================================================= */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target.closest(
+                    "#coOpLanguageContinue"
+                )
+            ) {
+
+                setTimeout(
+                    applyLanguageFix,
+                    200
+                );
+
+                setTimeout(
+                    applyLanguageFix,
+                    600
+                );
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =========================================================
+       WATCH FOR APP PAGE CHANGES
+       ========================================================= */
 
     function startObserver() {
 
         if (
-            document.body
+            !document.body
         ) {
+            return;
+        }
 
-            observer.observe(
-                document.body,
-                {
-                    childList: true,
-                    subtree: true
+
+        let timer = null;
+
+
+        const observer =
+            new MutationObserver(
+                function () {
+
+                    clearTimeout(
+                        timer
+                    );
+
+
+                    timer =
+                        setTimeout(
+                            function () {
+
+                                translateLandingPage();
+
+                            },
+                            100
+                        );
+
                 }
             );
 
-        }
+
+        observer.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
 
     }
 
 
-    /* ========================================================
-       INITIAL START
-       ======================================================== */
+    /* =========================================================
+       START
+       ========================================================= */
+
+    function startLanguageSystem() {
+
+        syncDropdowns();
+
+        setTimeout(
+            applyLanguageFix,
+            300
+        );
+
+        setTimeout(
+            applyLanguageFix,
+            800
+        );
+
+        startObserver();
+
+    }
+
 
     if (
         document.readyState ===
@@ -4953,26 +5113,12 @@ function goBack() {
 
         document.addEventListener(
             "DOMContentLoaded",
-            function () {
-
-                setTimeout(
-                    applyCoOpLanguageFix,
-                    300
-                );
-
-                startObserver();
-
-            }
+            startLanguageSystem
         );
 
     } else {
 
-        setTimeout(
-            applyCoOpLanguageFix,
-            300
-        );
-
-        startObserver();
+        startLanguageSystem();
 
     }
 
